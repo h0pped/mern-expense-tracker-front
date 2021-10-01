@@ -1,4 +1,53 @@
 .App {
   min-height: 100vh;
   font-family: "Harmony", sans-serif;
+
+  flex-direction: column;
+  transition: all 0.5s ease;
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  padding: 10rem 0 0;
+  &.auth-illustration {
+    padding: 5rem 0 0;
+    .title-illustration {
+      max-width: 25%;
+    }
+  }
+}
+.title-illustration {
+  display: block;
+  max-width: 30%;
+  transition: all 0.5s ease;
+  margin: auto;
+  position: relative;
+}
+
+.page {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.fade-appear,
+.fade-enter {
+  opacity: 0;
+  visibility: none;
+  z-index: 1;
+}
+.fade-appear-active,
+.fade-enter.fade-enter-active {
+  visibility: visible;
+  opacity: 1;
+  transition: all 500ms ease;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 500ms ease;
 }
