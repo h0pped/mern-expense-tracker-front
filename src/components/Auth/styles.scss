@@ -12,7 +12,7 @@
     margin: 1rem 0;
   }
 }
-.login-form {
+form {
   max-width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -50,6 +50,13 @@
       font-size: 1.2rem;
       background-color: white;
       border: 1px solid #b4b4b4;
+    }
+  }
+  &.login-form {
+    grid-template-columns: none;
+    width: 30%;
+    .submit-container {
+      grid-column-end: 1;
     }
   }
 }

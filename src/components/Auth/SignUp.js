@@ -34,7 +34,7 @@ const SignUp = () => {
     return (
       <div className="auth-container page">
         <h2>Sign up</h2>
-        <form onSubmit={formHandler} className="login-form">
+        <form onSubmit={formHandler} className="signup-form">
           <div className="input-container">
             <label htmlFor="name">Name</label>
             <input

@@ -1,18 +1,20 @@
 import axios from "axios";
-
-export const authUser = () => async (dispatch) => {
-  const res = await axios.post("https://localhost:5000/signin");
+import { signInURL, signUpURL, logOutURL } from "../api/serverapi";
+export const authUser = (user) => async (dispatch) => {
+  const res = await axios.post(signInURL, user, {
+    "Content-Type": "application/json",
+  });
   dispatch({
     type: "AUTH",
     payload: {
-      jwt: res.token,
-      user: res.user,
+      jwt: res.data.token,
+      user: res.data.user,
     },
   });
 };
 export const signUpUser = (user) => async (dispatch) => {
   console.log("SIGN UP  ACTION", user);
-  const res = await axios.post("http://localhost:5000/signup", user, {
+  const res = await axios.post(signUpURL, user, {
     "Content-Type": "application/json",
   });
   console.log(res);

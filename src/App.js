@@ -1,4 +1,4 @@
-import { Link, Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import "./app.scss";
 import SignIn from "./components/Auth/SignIn";
 import Home from "./components/Home/Home";
@@ -14,10 +14,7 @@ function App() {
   return (
     <div
       className={
-        "App " +
-        (location.pathname === "/signin" || location.pathname === "/signup"
-          ? "auth-illustration"
-          : "")
+        "App " + (location.pathname !== "/" ? "auth-illustration" : "")
       }
     >
       <img className="title-illustration" src={faceSvg} alt="face" />
