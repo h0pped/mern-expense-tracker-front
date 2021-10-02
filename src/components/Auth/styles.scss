@@ -2,7 +2,54 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  font-family: "Harmony", sans-serif;
+
   h2 {
+    font-size: 2.25rem;
     font-weight: 400;
+    line-height: 2.25rem;
+    margin: 1rem 0;
+  }
+}
+.login-form {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 1rem;
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    label {
+      font-size: 1.5rem;
+      padding: 0 0 0.5rem;
+    }
+    input {
+      padding: 0.3rem 0.3rem 0.3rem;
+      font-size: 1.1rem;
+      font-family: "Harmony", sans-serif;
+      border: 1px solid #b4b4b4;
+      &:focus {
+        outline: none;
+      }
+    }
+    &:nth-child(3),
+    &:nth-child(4),
+    &:nth-child(5) {
+      grid-column-end: span 2;
+    }
+  }
+  .submit-container {
+    grid-column-end: span 2;
+    button {
+      font-family: "Harmony", sans-serif;
+      width: 100%;
+      padding: 0.4rem 0.3rem 0.4rem;
+      font-size: 1.2rem;
+      background-color: white;
+      border: 1px solid #b4b4b4;
+    }
   }
 }

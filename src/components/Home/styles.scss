@@ -14,10 +14,11 @@
     justify-content: center;
     flex-direction: column;
   }
-  .auth-container {
+  .auth-links-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    flex-direction: row;
     width: 100%;
     a {
       text-decoration: none;

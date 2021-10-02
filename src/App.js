@@ -5,10 +5,12 @@ import Home from "./components/Home/Home";
 import faceSvg from "./assets/svg/face-title.svg";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import SignUp from "./components/Auth/SignUp";
+import Main from "./components/Main/Main";
 
 function App() {
   const location = useLocation();
   console.log(location);
+  console.log(process.env.REACT_APP_API_URL);
   return (
     <div
       className={
@@ -27,6 +29,7 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route path="/signin" component={SignIn} />
                 <Route path="/signup" component={SignUp} />
+                <Route path="/main" component={Main} />
               </Switch>
             </CSSTransition>
           </TransitionGroup>
