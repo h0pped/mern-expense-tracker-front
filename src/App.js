@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 import "./app.scss";
 import SignIn from "./components/Auth/SignIn";
@@ -9,8 +10,8 @@ import Main from "./components/Main/Main";
 
 function App() {
   const location = useLocation();
-  console.log(location);
   console.log(process.env.REACT_APP_API_URL);
+  const nodeRef = useRef(null);
   return (
     <div
       className={
@@ -21,7 +22,12 @@ function App() {
       <Route
         render={({ location }) => (
           <TransitionGroup>
-            <CSSTransition key={location.key} timeout={450} classNames="fade">
+            <CSSTransition
+              nodeRef={nodeRef}
+              key={location.key}
+              timeout={450}
+              classNames="fade"
+            >
               <Switch location={location}>
                 <Route exact path="/" component={Home} />
                 <Route path="/signin" component={SignIn} />

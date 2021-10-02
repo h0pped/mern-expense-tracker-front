@@ -13,7 +13,6 @@ export const authUser = (user) => async (dispatch) => {
   });
 };
 export const signUpUser = (user) => async (dispatch) => {
-  console.log("SIGN UP  ACTION", user);
   const res = await axios.post(signUpURL, user, {
     "Content-Type": "application/json",
   });
