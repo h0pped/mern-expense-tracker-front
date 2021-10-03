@@ -10,7 +10,6 @@ const Main = () => {
   const dispatch = useDispatch();
   const { jwt } = useSelector((state) => state.auth);
   useEffect(() => {
-    console.log("DISPATCH ");
     dispatch(getCards(jwt));
   }, [dispatch]);
 

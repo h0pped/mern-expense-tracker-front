@@ -4,3 +4,5 @@ export const signUpURL = `${BASE_URL}/signup`;
 export const signInURL = `${BASE_URL}/signin`;
 export const logOutURL = `${BASE_URL}/logout`;
 export const cardsURL = `${BASE_URL}/cards`;
+export const transactionsURL = (cardId) =>
+  `${BASE_URL}/card/${cardId}/transactions`;
