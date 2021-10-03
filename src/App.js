@@ -15,19 +15,21 @@ function App() {
   return (
     <div
       className={
-        "App " + (location.pathname !== "/" ? "auth-illustration" : "")
+        "App " +
+        (location.pathname === "/"
+          ? ""
+          : location.pathname === "/main"
+          ? "main-illustration"
+          : location.pathname === "/signin" || location.pathname === "/signup"
+          ? "auth-illustration"
+          : "")
       }
     >
       <img className="title-illustration" src={faceSvg} alt="face" />
       <Route
         render={({ location }) => (
           <TransitionGroup>
-            <CSSTransition
-              nodeRef={nodeRef}
-              key={location.key}
-              timeout={450}
-              classNames="fade"
-            >
+            <CSSTransition key={location.key} timeout={450} classNames="fade">
               <Switch location={location}>
                 <Route exact path="/" component={Home} />
                 <Route path="/signin" component={SignIn} />
