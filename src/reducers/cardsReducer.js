@@ -1,5 +1,6 @@
 const initState = {
   cards: null,
+  transactions_loading: false,
 };
 const cardsReducer = (state = initState, action) => {
   switch (action.type) {
@@ -11,6 +12,7 @@ const cardsReducer = (state = initState, action) => {
     case "GET_TRANSACTIONS":
       return {
         ...state,
+        transactions_loading: null,
         cards: state.cards.map((el) => {
           if (el._id === action.payload.cardId) {
             return {
@@ -21,6 +23,11 @@ const cardsReducer = (state = initState, action) => {
             return el;
           }
         }),
+      };
+    case "TRANSACTIONS_LOADING":
+      return {
+        ...state,
+        transactions_loading: action.payload.cardId,
       };
     default:
       return { ...state };

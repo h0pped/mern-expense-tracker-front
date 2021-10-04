@@ -13,8 +13,6 @@ const Main = () => {
     dispatch(getCards(jwt));
   }, [dispatch]);
 
-  const { cards } = useSelector((state) => state);
-  console.log(cards);
   return (
     <div className="main-page">
       <CardsStack />

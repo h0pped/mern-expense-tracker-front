@@ -16,7 +16,12 @@ export const getCards = (jwt) => async (dispatch) => {
 };
 export const getCardTransactions = (cards, jwt, cardId) => async (dispatch) => {
   if (jwt) {
-    const card = cards.find((item) => item._id === cardId);
+    dispatch({
+      type: "TRANSACTIONS_LOADING",
+      payload: {
+        cardId,
+      },
+    });
     axios.defaults.headers.common["Authorization"] = jwt;
     const transactions = await axios.get(transactionsURL(cardId), {
       "Content-Type": "application/json",

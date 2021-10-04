@@ -33,7 +33,7 @@ const CardsStack = () => {
       <div className="cards-stack-container">
         <Flicking className="cards-stack" onChanged={changeCardHandler}>
           {cards.map((card, index) => (
-            <CardContainer index={index} />
+            <CardContainer index={index} key={card._id} />
           ))}
         </Flicking>
       </div>

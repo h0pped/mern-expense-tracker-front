@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Card from "../Card/Card";
+import TransactionsCard from "../TransactionsCard/TransactionsCard";
 import "./styles.scss";
 
 export default React.forwardRef(({ index }, ref) => {
@@ -8,12 +9,11 @@ export default React.forwardRef(({ index }, ref) => {
   return (
     <div ref={ref} className="card-container">
       <Card index={index} />
-      {card?.transactions?.map((el) => (
-        <div className="transaction">
-          <p>{el.title}</p>
-          <p>{el.amount}</p>
-        </div>
-      ))}
+      <TransactionsCard
+        transactions={card.transactions}
+        key={card._id}
+        cardId={card._id}
+      />
     </div>
   );
 });
