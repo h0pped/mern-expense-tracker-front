@@ -4,11 +4,19 @@ import { useSelector } from "react-redux";
 const TransactionsCard = ({ transactions, cardId }) => {
   const { transactions_loading } = useSelector((state) => state.cards);
   if (transactions_loading === cardId) {
-    return "Loading...";
+    return (
+      <div className="loading-div">
+        <p>Refreshing...</p>
+      </div>
+    );
   } else if (!transactions) {
     return "";
   } else if (!transactions?.length) {
-    return "No transactions yet";
+    return (
+      <div className="loading-div">
+        <p>No transactions yet </p>
+      </div>
+    );
   } else if (transactions?.length) {
     return (
       <div className="transactions-container">

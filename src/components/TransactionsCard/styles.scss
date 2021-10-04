@@ -1,7 +1,7 @@
 .transactions-container {
   border-radius: 0.5rem;
   border: 1px solid black;
-  margin: 1rem 0;
+  margin: 2rem 0 0;
   padding: 0rem 1rem;
   .transaction {
     display: flex;
@@ -24,4 +24,11 @@
   }
   max-height: 70vh;
   overflow-y: scroll;
+}
+
+.loading-div {
+  margin: 2rem 0 0;
+  padding: 0rem 1rem;
+  width: 100%;
+  text-align: center;
 }
