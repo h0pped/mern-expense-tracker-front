@@ -36,6 +36,7 @@ const cardsReducer = (state = initState, action) => {
           if (el._id === action.payload.cardId) {
             return {
               ...el,
+              balance: el.balance + +action.payload.transaction.amount,
               transactions: [action.payload.transaction, ...el.transactions],
             };
           } else {

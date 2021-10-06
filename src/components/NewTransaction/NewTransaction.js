@@ -16,10 +16,10 @@ const NewTransaction = ({ cardId, setToggler }) => {
       [inputName]: inputValue,
     });
   };
-  const newTransactionHandler = (e) => {
+  const newTransactionHandler = async (e) => {
     e.preventDefault();
-    console.log(inputs);
-    dispatch(newTransaction(jwt, cardId, inputs));
+    await dispatch(newTransaction(jwt, cardId, inputs));
+    setToggler(false);
   };
   return (
     <div className="new-transaction-container">
