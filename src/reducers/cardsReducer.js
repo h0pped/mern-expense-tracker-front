@@ -29,6 +29,20 @@ const cardsReducer = (state = initState, action) => {
         ...state,
         transactions_loading: action.payload.cardId,
       };
+    case "ADD_TRANSACTION":
+      return {
+        ...state,
+        cards: state.cards.map((el) => {
+          if (el._id === action.payload.cardId) {
+            return {
+              ...el,
+              transactions: [action.payload.transaction, ...el.transactions],
+            };
+          } else {
+            return el;
+          }
+        }),
+      };
     default:
       return { ...state };
   }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { cardsURL, transactionsURL } from "../api/serverapi";
+import { cardsURL, transactionsURL, addTransactionURL } from "../api/serverapi";
 import { useSelector } from "react-redux";
 
 export const getCards = (jwt) => async (dispatch) => {
@@ -35,6 +35,26 @@ export const getCardTransactions = (cards, jwt, cardId) => async (dispatch) => {
     });
   }
 };
+export const newTransaction =
+  (jwt, cardId, transaction) => async (dispatch) => {
+    if (jwt) {
+      axios.defaults.headers.common["Authorization"] = jwt;
+      const transactions = await axios.post(
+        addTransactionURL(cardId),
+        transaction,
+        {
+          "Content-Type": "application/json",
+        }
+      );
+      dispatch({
+        type: "ADD_TRANSACTION",
+        payload: {
+          cardId,
+          transaction,
+        },
+      });
+    }
+  };
 // export const signUpUser = (user) => async (dispatch) => {
 //   const res = await axios.post(signUpURL, user, {
 //     "Content-Type": "application/json",

@@ -2,5 +2,53 @@
   border-radius: 0.5rem;
   border: 1px solid black;
   margin: 1rem 0 2rem;
-  padding: 0rem 1rem;
+  padding: 1rem 1rem;
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    .form-submit {
+      width: 100%;
+      button {
+        font-family: "Harmony", sans-serif;
+        width: 100%;
+        padding: 0.4rem 0.3rem 0.4rem;
+        font-size: 1rem;
+        background-color: inherit;
+        border: 1px solid #b4b4b4;
+      }
+    }
+    .form-input {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      label {
+        font-size: 1rem;
+        padding: 0 0 0.5rem;
+      }
+      .input-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        label {
+          padding: 0 0.5rem;
+        }
+      }
+      input {
+        width: 100%;
+        padding: 0.3rem 0.3rem 0.3rem;
+        font-size: 1.1rem;
+        font-family: "Harmony", sans-serif;
+        border: 1px solid #b4b4b4;
+        background-color: inherit;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
 }

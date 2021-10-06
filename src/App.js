@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 import "./app.scss";
 import SignIn from "./components/Auth/SignIn";
@@ -12,6 +12,10 @@ function App() {
   const location = useLocation();
   console.log(process.env.REACT_APP_API_URL);
   const nodeRef = useRef(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
   return (
     <div
       className={
