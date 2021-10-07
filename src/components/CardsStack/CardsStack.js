@@ -6,6 +6,7 @@ import CardContainer from "../CardContainer/CardContainer";
 import "./styles.scss";
 
 import Flicking from "@egjs/react-flicking";
+import NewCard from "../NewCard/NewCard";
 import "@egjs/react-flicking/dist/flicking.css";
 // Or, if you have to support IE9
 import "@egjs/react-flicking/dist/flicking-inline.css";
@@ -15,7 +16,10 @@ const CardsStack = () => {
   const { cards } = useSelector((state) => state.cards);
   const { jwt } = useSelector((state) => state.auth);
   const changeCardHandler = async (e) => {
-    await dispatch(getCardTransactions(cards, jwt, cards[e.index]._id));
+    if (e.index !== cards.length) {
+      //if not creation card selected
+      await dispatch(getCardTransactions(cards, jwt, cards[e.index]._id));
+    }
   };
   useEffect(async () => {
     if (cards && jwt && !cards[0].transactions) {
@@ -35,6 +39,7 @@ const CardsStack = () => {
           {cards.map((card, index) => (
             <CardContainer index={index} key={card._id} />
           ))}
+          <NewCard />
         </Flicking>
       </div>
     );
