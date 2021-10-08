@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "./styles.scss";
+import { useDispatch, useSelector } from "react-redux";
+// actions
+import { addCard } from "../../actions/cardsActions";
 export default React.forwardRef(({}, ref) => {
+  const { jwt } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const [inputs, setInputs] = useState({});
 
   const inputHandler = (e) => {
@@ -12,7 +17,11 @@ export default React.forwardRef(({}, ref) => {
     });
   };
   const submitCardHandler = () => {
-    console.log(inputs);
+    if (inputs.name && inputs.balance) {
+      console.log(inputs);
+      dispatch(addCard(jwt, inputs));
+      console.log("DISPATCH");
+    }
   };
   return (
     <div ref={ref} className="card-container">
@@ -26,8 +35,8 @@ export default React.forwardRef(({}, ref) => {
               <input
                 onChange={inputHandler}
                 type="text"
-                name="title"
-                id="titleInput"
+                name="name"
+                id="nameInput"
                 placeholder="Savings"
               />
             </div>

@@ -9,6 +9,11 @@ const cardsReducer = (state = initState, action) => {
         ...state,
         cards: action.payload.cards,
       };
+    case "ADD_CARD":
+      return {
+        ...state,
+        cards: [...state.cards, action.payload.card],
+      };
     case "GET_TRANSACTIONS":
       return {
         ...state,

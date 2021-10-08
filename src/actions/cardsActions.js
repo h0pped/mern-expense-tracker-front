@@ -14,6 +14,20 @@ export const getCards = (jwt) => async (dispatch) => {
     },
   });
 };
+export const addCard = (jwt, card) => async (dispatch) => {
+  if (jwt) {
+    axios.defaults.headers.common["Authorization"] = jwt;
+    const res = await axios.post(cardsURL, card, {
+      "Content-Type": "application/json",
+    });
+    dispatch({
+      type: "ADD_CARD",
+      payload: {
+        card: { ...res.data, transactions: [] },
+      },
+    });
+  }
+};
 export const getCardTransactions = (cards, jwt, cardId) => async (dispatch) => {
   if (jwt) {
     dispatch({

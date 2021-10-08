@@ -16,6 +16,7 @@ const CardsStack = () => {
   const { cards } = useSelector((state) => state.cards);
   const { jwt } = useSelector((state) => state.auth);
   const changeCardHandler = async (e) => {
+    console.log("CHANGE", e);
     if (e.index !== cards.length) {
       //if not creation card selected
       await dispatch(getCardTransactions(cards, jwt, cards[e.index]._id));
