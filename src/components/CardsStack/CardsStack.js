@@ -26,13 +26,13 @@ const CardsStack = () => {
     }
   };
   const removeCardHandler = async (id) => {
-    const cardIndex = cards.findIndex((el) => el._id === id);
-    console.log("remove card", id, cardIndex);
-    console.log("flicking", flicking);
-    await dispatch(deleteCard(jwt, id));
-    flicking.current.panels.splice(cardIndex, 1);
+    // dispatch(deleteCard(jwt, cardId));
+    console.log("remove card");
   };
   useEffect(async () => {
+    console.log("ORIGINAL", cards);
+    console.log("CLONED", clonedCards);
+    console.log(flicking);
     if (cards && jwt && !cards[0].transactions) {
       await dispatch(getCardTransactions(cards, jwt, cards[0]._id));
     }
