@@ -8,3 +8,4 @@ export const transactionsURL = (cardId) =>
   `${BASE_URL}/card/${cardId}/transactions`;
 export const addTransactionURL = (cardId) =>
   `${BASE_URL}/transactions/${cardId}`;
+export const deleteCardURL = (cardId) => `${BASE_URL}/cards/${cardId}`;

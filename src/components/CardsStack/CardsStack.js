@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, createRef } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getCardTransactions } from "../../actions/cardsActions";
+import { getCardTransactions, deleteCard } from "../../actions/cardsActions";
 import CardContainer from "../CardContainer/CardContainer";
 import "./styles.scss";
 
@@ -15,6 +15,9 @@ const CardsStack = () => {
   const dispatch = useDispatch();
   const { cards } = useSelector((state) => state.cards);
   const { jwt } = useSelector((state) => state.auth);
+  const flicking = createRef();
+
+  let clonedCards = JSON.parse(JSON.stringify(cards));
   const changeCardHandler = async (e) => {
     console.log("CHANGE", e);
     if (e.index !== cards.length) {
@@ -22,11 +25,18 @@ const CardsStack = () => {
       await dispatch(getCardTransactions(cards, jwt, cards[e.index]._id));
     }
   };
+  const removeCardHandler = async (id) => {
+    const cardIndex = cards.findIndex((el) => el._id === id);
+    console.log("remove card", id, cardIndex);
+    console.log("flicking", flicking);
+    await dispatch(deleteCard(jwt, id));
+    flicking.current.panels.splice(cardIndex, 1);
+  };
   useEffect(async () => {
     if (cards && jwt && !cards[0].transactions) {
       await dispatch(getCardTransactions(cards, jwt, cards[0]._id));
     }
-  }, [cards, jwt, dispatch]);
+  }, [cards, jwt, dispatch, flicking]);
   if (!cards) {
     return (
       <div>
@@ -36,9 +46,17 @@ const CardsStack = () => {
   } else {
     return (
       <div className="cards-stack-container">
-        <Flicking className="cards-stack" onChanged={changeCardHandler}>
+        <Flicking
+          className="cards-stack"
+          onChanged={changeCardHandler}
+          ref={flicking}
+        >
           {cards.map((card, index) => (
-            <CardContainer index={index} key={card._id} />
+            <CardContainer
+              index={index}
+              key={card._id}
+              removeCardHandler={removeCardHandler}
+            />
           ))}
           <NewCard />
         </Flicking>

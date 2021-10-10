@@ -14,6 +14,11 @@ const cardsReducer = (state = initState, action) => {
         ...state,
         cards: [...state.cards, action.payload.card],
       };
+    case "REMOVE_CARD":
+      return {
+        ...state,
+        cards: state.cards.filter((el) => el._id !== action.payload.cardId),
+      };
     case "GET_TRANSACTIONS":
       return {
         ...state,

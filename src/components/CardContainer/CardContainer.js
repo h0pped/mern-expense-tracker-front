@@ -5,12 +5,12 @@ import CardActions from "../CardActions/CardActions";
 import TransactionsCard from "../TransactionsCard/TransactionsCard";
 import "./styles.scss";
 
-export default React.forwardRef(({ index }, ref) => {
+export default React.forwardRef(({ index, removeCardHandler }, ref) => {
   const card = useSelector((state) => state.cards.cards[index]);
   return (
     <div ref={ref} className="card-container">
       <Card index={index} />
-      <CardActions cardId={card._id} />
+      <CardActions cardId={card._id} removeCardHandler={removeCardHandler} />
       <TransactionsCard
         transactions={card.transactions}
         key={card._id}

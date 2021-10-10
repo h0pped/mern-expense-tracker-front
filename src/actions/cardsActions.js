@@ -1,5 +1,10 @@
 import axios from "axios";
-import { cardsURL, transactionsURL, addTransactionURL } from "../api/serverapi";
+import {
+  cardsURL,
+  transactionsURL,
+  addTransactionURL,
+  deleteCardURL,
+} from "../api/serverapi";
 import { useSelector } from "react-redux";
 
 export const getCards = (jwt) => async (dispatch) => {
@@ -47,6 +52,24 @@ export const getCardTransactions = (cards, jwt, cardId) => async (dispatch) => {
         transactions: transactions.data,
       },
     });
+  }
+};
+export const deleteCard = (jwt, cardId) => async (dispatch) => {
+  if (jwt) {
+    axios.defaults.headers.common["Authorization"] = jwt;
+    try {
+      await axios.delete(deleteCardURL(cardId), {
+        "Content-Type": "application/json",
+      });
+      dispatch({
+        type: "REMOVE_CARD",
+        payload: {
+          cardId,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 };
 export const newTransaction =
